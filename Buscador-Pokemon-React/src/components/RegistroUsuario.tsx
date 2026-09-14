@@ -8,15 +8,15 @@ export const RegistroUsuario: React.FC = () => {
 
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
-    const [tipoDocumento, setTipo_de_documento] = useState('CC');
-    const [dni, setdni] = useState('CC');
-    const [fechaNacimiento, setFecha_de_nacimiento] = useState('');
+    const [tipoDocumento, setTipoDocumento] = useState('CC');
+    const [dni, setDni] = useState('');
+    const [fechaNacimiento, setFechaNacimiento] = useState('');
     const [genero, setGenero] = useState('');
-    const [correo, setCorreo_electronico] = useState('');
-    const [telefono, setNumero_de_telefono] = useState('');
-    const [pais, setPais_de_domicilio] = useState('');
-    const [ciudad, setCiudad_de_domicilio] = useState('');
-    const [tratamientoDatos, setTratamiento_de_datos] = useState('');
+    const [correo, setCorreo] = useState('');
+    const [telefono, setTelefono] = useState('');
+    const [pais, setPais] = useState('169');
+    const [ciudad, setCiudad] = useState('');
+    const [tratamientoDatos, setTratamientoDatos] = useState(true);
 
     const eventoSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -34,15 +34,15 @@ export const RegistroUsuario: React.FC = () => {
             tipo: tipoDocumento,
             numero: dni
     },
-        fecha_Nacimiento : fechaNacimiento,
-        Genero : genero,
-        Correo_electronico : correo,
-        Numero_de_telefono : telefono ,
+        fechaNacimiento : fechaNacimiento,
+        genero : genero,
+        correoElectronico : correo,
+        numeroTelefono : telefono ,
         domicilio : {
-            Pais_de_domicilio : pais,
-            Ciudad_de_domicilio : ciudad
+            paisDomicilio : pais,
+            ciudadDomicilio : ciudad
         },
-        tratamiento_de_datos :tratamientoDatos,
+        tratamientoDatos :tratamientoDatos,
     };
     
     registrarEntrenador(nuevo);
@@ -50,14 +50,12 @@ export const RegistroUsuario: React.FC = () => {
    };
 
     return (
-
-            <div>
-                <p>Continuamos el Lunes</p>
-            </div>
+    
+    <div>
+        <p>Continuamos el Lunes</p>
+    </div>
             )
-        };
-   
-};
+        
 
 
 

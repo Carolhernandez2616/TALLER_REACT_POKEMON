@@ -7,15 +7,15 @@ export interface Usuario {
         tipo: string;
         numero: string;
 },
-    fecha_Nacimiento : string;
-    Genero : string;
-    Correo_electronico : string;
-    Numero_de_telefono : string ;
+    fechaNacimiento : string;
+    genero : string;
+    correoElectronico : string;
+    numeroTelefono : string ;
     domicilio : {
-        Pais_de_domicilio : string;
-        Ciudad_de_domicilio : string;
+        paisDomicilio : string;
+        ciudadDomicilio : string;
     },
-    tratamiento_de_datos :boolean;
+    tratamientoDatos :boolean;
 };
 
 
@@ -30,7 +30,7 @@ export interface PokemonTarjeta {
 interface PokemonContextType {
     entrenadores: Usuario [] ;
     entrenadorActivo: Usuario | null;
-    mochilaActual: PokemonTarjeta[];
+    mochilaActual: PokemonTarjeta [];
     seleccionarEntrenador: (usuario: Usuario) => void;
     registrarEntrenador: (usuario: Usuario) => void;
     guardarPokemonMochila: (pokemon: PokemonTarjeta) => void;
@@ -99,9 +99,9 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
     
     }
 
-    const eliminarPokemon = (pokemonId: number) => {
+    const eliminarPokemonDeMochila = (pokemonId: number) => {
         if(!entrenadorActivo) return;
-        const filtrado = mochilaActual?.filter (p => p.id !==);
+        const filtrado = mochilaActual.filter(p => p.id !== pokemonId);
         setMochilaActual(filtrado);
         localStorage.setItem(`mochila_${entrenadorActivo.id}`,JSON.stringify(actualizada));
 
@@ -115,7 +115,7 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
             registrarEntrenador,
             guardarPokemonMochila,
             actualizarFavorito,
-            eliminarPokemon
+            eliminarPokemonDeMochila
         }} >
             { children }
         </PokemonContext.Provider>
