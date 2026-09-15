@@ -127,4 +127,4 @@ export const usePokemon = () =>{
     const context = useContext(PokemonContext);
     if(!context) throw new Error('usePokemon debe usarse en Provider');
     return context;
-}
+};
