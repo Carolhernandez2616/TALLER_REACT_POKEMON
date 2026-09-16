@@ -218,9 +218,29 @@ return (
 
 
         </div>
-        
-    </div>
-);
+
+           
+           {entrenadores.length > 0 && (
+                <div>
+                    <h3> Cambiar Entrenador </h3>
+                    <div>
+                        {entrenadores.map((user) => (
+                            <button key={user.id} type='button' onClick={() => seleccionarEntrenador(user)}
+                            style={{
+                                backgroundColor: entrenadorActivo?.id === user.id ? '#FF00FF' : '#F00F',
+                                color :entrenadorActivo?.id === user.id ? 'white' : 'black',
+                                padding: '6px 12px',
+
+
+                            }}> {user.nombreCompleto} </button>
+                            
+                        ))}
+                 
+                    </div>
+                </div>   
+            )}
+        </div>
+    );
 
 };
 

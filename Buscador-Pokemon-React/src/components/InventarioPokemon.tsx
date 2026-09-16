@@ -45,7 +45,7 @@ export const InventarioPokemon: React.FC = () => {
     };
 
         registrarEntrenador(nuevo);
-        navigate('/pokemon');
+        navigate('/inventario');
 
     };  
 
