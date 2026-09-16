@@ -61,7 +61,7 @@ return (
         )}
     </div>
 
-     <form onSubmit={buscarPokemon}>
+     <form onSubmit={usePokemon}>
         <div>
             <label>Buscar Pokemon</label>
             <input type='text' value={busqueda} onChange={(e) => setBusqueda(e.target.value)} placeholder="Ej: Pikachu, Charmander, Snorlax" />
@@ -76,7 +76,7 @@ return (
         pokemonActual && (
             <div>
                 <h3> {pokemonActual.name}</h3>
-                <img src={pokemonActual.image} />
+                <img src={pokemonActual.image}/>
             </div>
         )
     }
