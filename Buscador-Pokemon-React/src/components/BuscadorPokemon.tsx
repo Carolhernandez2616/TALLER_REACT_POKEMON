@@ -6,12 +6,12 @@ export const BuscadorPokemon: React.FC = () => {
 
     const [busqueda, setBusqueda] = useState('');
     const [pokemonActual, setPokemonActual] = useState<PokemonTarjeta | null>(null);
-    const [mensajeError, setMensajeError] = useState<string | null>;
+    const [mensajeError, setMensajeError] = useState<string | null>(null);
     const [cargando, setCargando] = useState(false);
 
 
 
-    const eventoSubmit = (e: React.FormEvent) => {
+    const buscarPokemon = async (e: React.FormEvent) => {
         e.preventDefault();
 
         const query = busqueda.trim().toLowerCase();
@@ -46,13 +46,21 @@ export const BuscadorPokemon: React.FC = () => {
 
     };
 
-    if (pokemonActual)  {
+    const clickGuardar =  ()  => {
+
+        if (!entrenadorActivo) {
+            alert('Debes seleccionar o registrar un entrenador')
+        }
+        if (pokemonActual)  {
         guardarPokemonMochila(pokemonActual);
-        alert(`El Pokemon ${pokemonActual} Bichito es guardado en la mochila de ${entrenadorActivo} Jaimito`)
+        alert(`El Pokemon ${pokemonActual.name}  es guardado en la mochila de ${entrenadorActivo?.nombreCompleto}`)
     }
 
+    }
+
+
 return (
-<div>
+<div className='form-container'>
     <div>
         {entrenadorActivo ? (
             <p>Mochila Activa de: <strong>{entrenadorActivo.nombreCompleto}</strong></p>
@@ -61,7 +69,7 @@ return (
         )}
     </div>
 
-     <form onSubmit={usePokemon}>
+     <form onSubmit={buscarPokemon}>
         <div>
             <label>Buscar Pokemon</label>
             <input type='text' value={busqueda} onChange={(e) => setBusqueda(e.target.value)} placeholder="Ej: Pikachu, Charmander, Snorlax" />
@@ -77,6 +85,28 @@ return (
             <div>
                 <h3> {pokemonActual.name}</h3>
                 <img src={pokemonActual.image}/>
+                <p>
+                    Elemento: {' '}
+                    <span style={{
+                        backgroundColor:
+                        pokemonActual.type === 'fire' ? '#f80b0b':
+                        pokemonActual.type === 'water' ? '#024aff':
+                        pokemonActual.type === 'grass' ? '#14f539':
+                        pokemonActual.type === 'electric' ? '#e2e60c': '#55080c',
+                    color: 'white',
+                    padding: '3px 8px',
+                    borderRadius: '10px',
+                    border: '2px solid #000000'
+                    }}>
+                    {pokemonActual.type.toUpperCase()}
+                    </span>
+                </p>
+                <p>
+                    Experiencias Base: <strong>{pokemonActual.baseExperience}</strong>
+                    <button type="button" className="btn-capturar" onClick={clickGuardar}  disabled= {!entrenadorActivo}>
+                        Guardar en la Mochila
+                    </button>
+                </p>
             </div>
         )
     }
