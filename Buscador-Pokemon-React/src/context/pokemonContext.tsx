@@ -36,14 +36,14 @@ interface PokemonContextType {
     guardarPokemonMochila: (pokemon: PokemonTarjeta) => void;
     actualizarFavorito: (pokemonId: number) => void;
     eliminarPokemonDeMochila: (pokemonId: number) => void;
-};
+};//aqui las estoy declarando
 
-const PokemonContext = createContext<PokemonContextType | undefined> (undefined);
+const PokemonContext = createContext<PokemonContextType | undefined> (undefined);//puede ser de u tipo contexto o indefinido
 
 export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [entrenadores, setEntrenadores] = useState<Usuario[]>([]);
     const [entrenadorActivo, setEntrenadorActivo] = useState<Usuario | null>(null);
-    const [mochilaActual, setMochilaActual] = useState<PokemonTarjeta[] | null>(null);
+    const [mochilaActual, setMochilaActual] = useState<PokemonTarjeta[]>([]);
     useEffect(() => {
         const data = localStorage.getItem('lista_entrenadores');
         if (data) {    
@@ -103,12 +103,12 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
         if(!entrenadorActivo) return;
         const filtrado = mochilaActual.filter(p => p.id !== pokemonId);
         setMochilaActual(filtrado);
-        localStorage.setItem(`mochila_${entrenadorActivo.id}`,JSON.stringify(actualizada));
+        localStorage.setItem(`mochila_${entrenadorActivo.id}`,JSON.stringify(filtrado));
 
     };
 
     return (
-        <PokemonContext.Provider value ={{
+        <PokemonContext.Provider value={{
             entrenadores,
             entrenadorActivo,
             seleccionarEntrenador,
