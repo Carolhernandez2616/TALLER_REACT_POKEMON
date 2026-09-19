@@ -60,8 +60,9 @@ export const BuscadorPokemon: React.FC = () => {
         guardarPokemonMochila(pokemonActual);
         alert(`El Pokemon ${pokemonActual.name}  es guardado en la mochila de ${entrenadorActivo?.nombreCompleto}`)
     }
+    setPokemonActual(null); 
         
-        navigate('/inventario');
+navigate('/inventario');
 
     }
 

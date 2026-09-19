@@ -44,6 +44,7 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const [entrenadores, setEntrenadores] = useState<Usuario[]>([]);
     const [entrenadorActivo, setEntrenadorActivo] = useState<Usuario | null>(null);
     const [mochilaActual, setMochilaActual] = useState<PokemonTarjeta[]>([]);
+    
     useEffect(() => {
         const data = localStorage.getItem('lista_entrenadores');
         if (data) {    
@@ -84,20 +85,28 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
   
     const guardarPokemonMochila = (pokemon: PokemonTarjeta) =>{
         if (!entrenadorActivo) return;
-        const actualizada = [...mochilaActual, {...pokemon, esFavorito: false}];
+
+        const mochilaGuardada = JSON.parse(
+        localStorage.getItem(`mochila_${entrenadorActivo.id}`) ?? '[]');
+
+        const actualizada = [...mochilaGuardada, {...pokemon, esFavorito: false}];
         setMochilaActual(actualizada);
         localStorage.setItem(`mochila_${entrenadorActivo.id}`, JSON.stringify(actualizada));
+
+
     };
+
+    
+    
 
     const actualizarFavorito = (pokemonId: number) => {
         if (!entrenadorActivo) return;
         const actualizada = mochilaActual.map(p => p.id === pokemonId ? {...p, esFavorito: !p.esFavorito } : p);
         setMochilaActual(actualizada);
         localStorage.setItem(`mochila_${entrenadorActivo.id}`,JSON.stringify(actualizada));
-
-
     
     }
+
 
     const eliminarPokemonDeMochila = (pokemonId: number) => {
         if(!entrenadorActivo) return;
