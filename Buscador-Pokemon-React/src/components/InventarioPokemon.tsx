@@ -7,7 +7,7 @@ export const InventarioPokemon: React.FC = () => {
 
     if(!entrenadorActivo){
         return(
-        <div>
+        <div className="form-container">
             <h3> NO HAY ENTRENADORES</h3>
             <p> Por favor asigne <strong>entrenador activo</strong> o registre un entrenador </p>
         </div>
@@ -22,9 +22,9 @@ return (
     <header>
         <h2>Mochila de {entrenadorActivo.nombreCompleto}</h2>
     </header>
-    <div className ="grid-mochila">
-        {mochilaActual.length > 0 ? (
-            mochilaActual.map( (poke , index) => (
+    {mochilaActual.length > 0 ? (
+        <div className="grid-mochila">
+            {mochilaActual.map( (poke , index) => (
                 <div key ={poke.id} className={`tarjeta-item ${poke.esFavorito ? 'tarjeta-favorita' :''}`}>
 
                     <span>
@@ -44,17 +44,15 @@ return (
                         onClick={() => eliminarPokemonDeMochila(poke.id)}>Liberar o Soltar</button> 
                     </div>
                 </div>
-            ))
-        ) : (
+            ))}
+        </div>
+    ) : (
             <div>
                 <p> Tu mochila esta vacia actualmente.</p>
                 <p> ¡Vaya y capture pokemon, papi! </p>
 
             </div>
-        )
-        
-        } 
-    </div>
+    )}
     
 </div>
 );

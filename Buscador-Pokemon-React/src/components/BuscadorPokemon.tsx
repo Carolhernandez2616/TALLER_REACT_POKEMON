@@ -86,6 +86,8 @@ return (
         </button>
      </form>
 
+      {mensajeError && <p className="search-error" role="alert">{mensajeError}</p>}
+
      {
         pokemonActual && (
             <div>

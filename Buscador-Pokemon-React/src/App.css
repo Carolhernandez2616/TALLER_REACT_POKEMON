@@ -1,32 +1,20 @@
-/* ==========================================================================
-   1. RESET Y VARIABLES GLOBALES
-   ========================================================================== */
 :root {
-  --font-base: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-base: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'SFMono-Regular', Consolas, Menlo, monospace;
-
-  /* Colores de Sistema */
-  --color-app-bg: #0f172a;
-  --color-surface: #1e293b;
-  --color-surface-card: #273549;
-  --color-border: #334155;
-  --color-border-hover: #475569;
-  
-  --color-text-main: #f8fafc;
-  --color-text-muted: #94a3b8;
-  
-  --color-primary: #ef4444;
-  --color-primary-hover: #dc2626;
-  --color-accent: #f59e0b;
-  --color-gold: #facc15;
-  --color-gold-bg: rgba(250, 204, 21, 0.15);
-
+  --color-app-bg: #1d102d;
+  --color-surface: #321b4d;
+  --color-surface-card: #452563;
+  --color-border: #704785;
+  --color-text-main: #fff7ff;
+  --color-text-muted: #e4c9e9;
+  --color-primary: #ec4899;
+  --color-accent: #c084fc;
+  --color-gold: #f9a8d4;
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
-
-  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.25);
+  --shadow-card: 0 18px 40px -16px rgba(10, 3, 20, 0.85), 0 0 28px rgba(236, 72, 153, 0.12);
+  --shadow-glow: 0 0 22px rgba(244, 114, 182, 0.3);
   --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -39,19 +27,59 @@
 body {
   font-family: var(--font-base);
   background-color: var(--color-app-bg);
+  background-image: radial-gradient(circle at 15% 10%, rgba(236, 72, 153, 0.18), transparent 28rem),
+    radial-gradient(circle at 85% 80%, rgba(168, 85, 247, 0.2), transparent 32rem);
   color: var(--color-text-main);
   line-height: 1.5;
   padding: 2rem 1rem;
 }
 
-/* ==========================================================================
-   2. CONTENEDOR PRINCIPAL COMÚN (.form-container)
-   ========================================================================== */
+#root > header {
+  padding: 1.5rem 1rem 1.25rem;
+}
+
+#root > header h1 {
+  margin: 0 auto 1.25rem;
+  color: #fbcfe8;
+  font-size: clamp(1.65rem, 4vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  text-shadow: 0 3px 18px rgba(236, 72, 153, 0.35);
+}
+
+#root > header nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+#root > header nav a {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: #f5d0fe;
+  background: rgba(69, 37, 99, 0.72);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+#root > header nav a:hover,
+#root > header nav a.active-tab {
+  color: #ffffff;
+  background: linear-gradient(135deg, #ec4899, #9333ea);
+  border-color: #f9a8d4;
+  box-shadow: 0 5px 18px rgba(236, 72, 153, 0.35);
+  transform: translateY(-2px);
+}
+
 .form-container {
   max-width: 860px;
   margin: 1.5rem auto 3rem;
   padding: 2.5rem;
-  background-color: var(--color-surface);
+  background: rgba(50, 27, 77, 0.94);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-card);
@@ -61,14 +89,10 @@ body {
   font-size: 2rem;
   font-weight: 800;
   text-align: center;
-  color: #38bdf8;
+  color: #f9a8d4;
   margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
 }
 
-/* ==========================================================================
-   3. COMPONENTE 1: REGISTRO DE ENTRENADORES
-   ========================================================================== */
 .card__header {
   text-align: center;
   margin-bottom: 2rem;
@@ -83,12 +107,11 @@ body {
   margin-bottom: 0.35rem;
 }
 
-.card__subtitle {
-  font-size: 0.95rem;
+.card__subtitle,
+.form-container p {
   color: var(--color-text-muted);
 }
 
-/* Grilla del formulario */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -99,18 +122,22 @@ body {
   .grid {
     grid-template-columns: 1fr;
   }
+
+  .form-container {
+    padding: 1.25rem;
+  }
 }
 
 .section-label {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  color: #38bdf8;
-  margin: 2rem 0 1.25rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  margin: 2rem 0 1.25rem;
+  color: #f0abfc;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .section-label::after {
@@ -120,7 +147,6 @@ body {
   background-color: var(--color-border);
 }
 
-/* Campos del Formulario */
 .field {
   display: flex;
   flex-direction: column;
@@ -128,34 +154,37 @@ body {
   text-align: left;
 }
 
-.field label {
+.field label,
+.form-container > form label {
+  color: #f5d0fe;
   font-size: 0.875rem;
-  font-weight: 600;
-  color: #cbd5e1;
+  font-weight: 700;
 }
 
 .req {
-  color: #f87171;
+  color: #f9a8d4;
   font-weight: bold;
 }
 
 .input,
-.select {
+.select,
+.form-container > form input[type='text'] {
   width: 100%;
-  padding: 0.75rem 0.95rem;
-  font-size: 0.95rem;
+  padding: 0.8rem 0.95rem;
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
-  background-color: #0f172a;
+  background-color: #241333;
   color: var(--color-text-main);
+  font-size: 0.95rem;
   outline: none;
   transition: var(--transition);
 }
 
 .input:focus,
-.select:focus {
-  border-color: #38bdf8;
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+.select:focus,
+.form-container > form input[type='text']:focus {
+  border-color: #f472b6;
+  box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.2);
 }
 
 .input--mono {
@@ -164,42 +193,33 @@ body {
 
 .select {
   cursor: pointer;
-  appearance: auto;
 }
 
-.hint--error {
-  display: none;
-}
-
-/* Acordeón de Políticas */
 .policy {
   margin: 1.5rem 0 1.25rem;
   padding: 1rem 1.25rem;
-  border-radius: var(--radius-sm);
-  background-color: #0f172a;
   border: 1px solid var(--color-border);
-  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+  background-color: #241333;
   color: var(--color-text-muted);
+  font-size: 0.85rem;
   text-align: left;
 }
 
 .policy summary {
-  font-weight: 600;
-  color: #93c5fd;
+  color: #f0abfc;
   cursor: pointer;
-  outline: none;
+  font-weight: 700;
 }
 
 .policy summary:hover {
-  color: #38bdf8;
+  color: #f9a8d4;
 }
 
 .policy p {
   margin-top: 0.6rem;
-  line-height: 1.5;
 }
 
-/* Checkbox Consentimiento */
 .consent {
   margin: 1.25rem 0 1.75rem;
   text-align: left;
@@ -210,24 +230,20 @@ body {
   align-items: flex-start;
   gap: 0.65rem;
   cursor: pointer;
-  user-select: none;
 }
 
-.checkbox input[type="checkbox"] {
+.checkbox input[type='checkbox'] {
   width: 1.15rem;
   height: 1.15rem;
   margin-top: 0.2rem;
   accent-color: var(--color-primary);
-  cursor: pointer;
 }
 
 .checkbox__text {
+  color: #fce7f3;
   font-size: 0.85rem;
-  line-height: 1.45;
-  color: #e2e8f0;
 }
 
-/* Acciones y Botón de Registro */
 .actions {
   display: flex;
   justify-content: flex-end;
@@ -235,75 +251,70 @@ body {
   padding-top: 1.5rem;
 }
 
+.btn,
+.btn-capturar,
+.btn-fav,
+.btn-eliminar {
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 800;
+  transition: var(--transition);
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.95rem;
-  font-weight: 700;
   padding: 0.85rem 2rem;
-  border-radius: var(--radius-sm);
-  border: none;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.btn--primary {
-  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  background: linear-gradient(135deg, #ec4899, #9333ea);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4);
+  box-shadow: 0 4px 14px rgba(236, 72, 153, 0.4);
 }
 
-.btn--primary:hover {
+.btn:hover,
+.btn-capturar:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+  box-shadow: 0 6px 20px rgba(236, 72, 153, 0.55);
 }
 
 .btn__arrow {
   transition: transform 0.2s ease;
 }
 
-.btn--primary:hover .btn__arrow {
+.btn:hover .btn__arrow {
   transform: translateX(4px);
 }
 
-/* Panel inferior para alternar entrenadores */
 .form-container + div,
-div:has(> h3:contains("Cambiar Entrenador")),
-div:has(> div > button[type="button"]) {
-  margin: 2rem auto;
+div:has(> div > button[type='button']) {
   max-width: 860px;
-  background-color: var(--color-surface);
+  margin: 2rem auto;
+  padding: 1.5rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 1.5rem;
+  background: rgba(50, 27, 77, 0.94);
   text-align: center;
 }
 
-/* ==========================================================================
-   4. COMPONENTE 2: BUSCADOR POKÉMON CREATIVO
-   ========================================================================== */
-/* Banner de sesión activa */
 .form-container > div:first-child p {
-  background-color: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  color: #38bdf8;
-  padding: 0.85rem 1.25rem;
-  border-radius: var(--radius-sm);
   margin-bottom: 1.75rem;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid rgba(244, 114, 182, 0.35);
+  border-radius: var(--radius-sm);
+  background-color: rgba(244, 114, 182, 0.12);
+  color: #f9a8d4;
   text-align: center;
-  font-size: 0.95rem;
 }
 
-/* Formulario de búsqueda (Tipo Radar) */
 .form-container > form {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  background: var(--color-surface-card);
   padding: 1.75rem;
-  border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-card);
 }
 
 .form-container > form > div {
@@ -314,82 +325,69 @@ div:has(> div > button[type="button"]) {
 }
 
 .form-container > form label {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #93c5fd;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
-.form-container > form input[type="text"] {
-  padding: 0.85rem 1.2rem;
-  font-size: 1.05rem;
-  background-color: #0f172a;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  color: var(--color-text-main);
-  outline: none;
-  transition: var(--transition);
-}
-
-.form-container > form input[type="text"]:focus {
-  border-color: #38bdf8;
-  box-shadow: var(--shadow-glow);
-}
-
-.form-container > form > button[type="submit"] {
-  background: linear-gradient(135deg, #0284c7, #2563eb);
-  color: #ffffff;
-  border: none;
+.form-container > form > button[type='submit'] {
   padding: 0.85rem 1.5rem;
+  border: 0;
   border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #d946ef, #9333ea);
+  color: #ffffff;
+  cursor: pointer;
   font-size: 1rem;
   font-weight: 800;
-  cursor: pointer;
-  letter-spacing: 0.03em;
   transition: var(--transition);
 }
 
-.form-container > form > button[type="submit"]:hover:not(:disabled) {
+.form-container > form > button[type='submit']:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+  box-shadow: 0 0 20px rgba(217, 70, 239, 0.55);
 }
 
-.form-container > form > button[type="submit"]:disabled {
+.form-container > form > button[type='submit']:disabled,
+.btn-capturar:disabled {
   background: var(--color-border);
   color: var(--color-text-muted);
   cursor: not-allowed;
 }
 
-/* Tarjeta holográfica del Pokémon encontrado */
-.form-container > div:last-child:not(.grid-mochila) {
-  margin-top: 2rem;
-  padding: 2rem;
-  border-radius: var(--radius-md);
+.search-error {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(249, 168, 212, 0.45);
+  border-radius: var(--radius-sm);
+  background-color: rgba(190, 24, 93, 0.2);
+  color: #fbcfe8;
   text-align: center;
-  background: linear-gradient(145deg, #1e293b, #0f172a);
-  border: 2px solid rgba(56, 189, 248, 0.3);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(56, 189, 248, 0.1);
+}
+
+.form-container > div:last-child:not(.grid-mochila) {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 2px solid rgba(244, 114, 182, 0.35);
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, #452563, #241333);
+  box-shadow: 0 10px 30px rgba(10, 3, 20, 0.5), inset 0 0 15px rgba(236, 72, 153, 0.12);
+  text-align: center;
 }
 
 .form-container > div:last-child:not(.grid-mochila) h3 {
-  font-size: 1.85rem;
-  font-weight: 800;
-  text-transform: capitalize;
   color: #ffffff;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.02em;
+  font-size: 1.85rem;
+  text-transform: capitalize;
 }
 
 .form-container > div:last-child:not(.grid-mochila) img {
   width: 160px;
   height: 160px;
-  object-fit: contain;
   margin: 0.75rem 0;
-  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+  object-fit: contain;
+  filter: drop-shadow(0 10px 15px rgba(236, 72, 153, 0.35));
   transition: transform 0.3s ease;
 }
 
@@ -397,43 +395,17 @@ div:has(> div > button[type="button"]) {
   transform: scale(1.1) rotate(2deg);
 }
 
-.form-container > div:last-child:not(.grid-mochila) p {
-  margin: 0.4rem 0;
-  font-size: 1rem;
-  color: #cbd5e1;
-}
-
 .btn-capturar {
   display: block;
   width: 100%;
   max-width: 320px;
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #ffffff;
-  border: none;
-  padding: 0.85rem 1.5rem;
-  border-radius: var(--radius-sm);
-  font-size: 1rem;
-  font-weight: 800;
-  cursor: pointer;
   margin-top: 1.25rem;
-  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-  transition: var(--transition);
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, #ec4899, #be185d);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
 }
 
-.btn-capturar:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(245, 158, 11, 0.6);
-}
-
-.btn-capturar:disabled {
-  background: var(--color-border);
-  color: var(--color-text-muted);
-  cursor: not-allowed;
-}
-
-/* ==========================================================================
-   5. COMPONENTE 3: INVENTARIO CON CONTENEDORES DEGRADADOS
-   ========================================================================== */
 .grid-mochila {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -441,67 +413,41 @@ div:has(> div > button[type="button"]) {
   margin-top: 1.5rem;
 }
 
-/* Contenedores con degradados llamativos */
 .tarjeta-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem 1.25rem;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
-
-  /* Degradado vivo por defecto (Púrpura Neón / Azul) */
-  background: linear-gradient(145deg, #4f46e5, #7c3aed, #9333ea);
+  padding: 1.5rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, #db2777, #9333ea, #6b21a8);
   color: #ffffff;
-}
-
-/* Variaciones llamativas según el tipo indicado en el texto del Pokémon */
-.tarjeta-item:has(p:contains("fire")),
-.tarjeta-item:has(p:contains("fuego")) {
-  background: linear-gradient(145deg, #ea580c, #dc2626, #991b1b);
-}
-
-.tarjeta-item:has(p:contains("water")),
-.tarjeta-item:has(p:contains("agua")) {
-  background: linear-gradient(145deg, #0284c7, #2563eb, #1d4ed8);
-}
-
-.tarjeta-item:has(p:contains("grass")),
-.tarjeta-item:has(p:contains("planta")) {
-  background: linear-gradient(145deg, #16a34a, #059669, #047857);
-}
-
-.tarjeta-item:has(p:contains("electric")),
-.tarjeta-item:has(p:contains("eléctrico")) {
-  background: linear-gradient(145deg, #eab308, #ca8a04, #a16207);
+  box-shadow: 0 8px 20px rgba(10, 3, 20, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .tarjeta-item:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 16px 30px rgba(10, 3, 20, 0.55);
 }
 
-/* Indicador de posición (#1 de X) */
 .tarjeta-item > span {
-  font-size: 0.75rem;
-  font-weight: 800;
-  background: rgba(0, 0, 0, 0.35);
-  padding: 3px 10px;
-  border-radius: 9999px;
   align-self: flex-start;
   margin-bottom: 0.5rem;
-  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.28);
+  font-size: 0.75rem;
+  font-weight: 800;
 }
 
 .tarjeta-item img {
   width: 115px;
   height: 115px;
-  object-fit: contain;
   margin: 0.5rem 0;
+  object-fit: contain;
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
   transition: transform 0.2s ease;
 }
@@ -511,29 +457,24 @@ div:has(> div > button[type="button"]) {
 }
 
 .tarjeta-item h4 {
-  font-size: 1.25rem;
-  font-weight: 800;
-  text-transform: capitalize;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   margin-top: 0.25rem;
+  font-size: 1.25rem;
+  text-transform: capitalize;
 }
 
 .tarjeta-item p {
+  margin-bottom: 1.25rem;
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 1.25rem;
 }
 
-/* Tarjeta Favorita con resplandor dorado */
 .tarjeta-item.tarjeta-favorita {
   border: 2px solid var(--color-gold);
-  box-shadow: 0 0 25px rgba(250, 204, 21, 0.45);
+  box-shadow: 0 0 25px rgba(249, 168, 212, 0.45);
 }
 
-/* Botones de acción inferiores (Glassmorphism) */
 .panel-botones {
   display: flex;
   gap: 0.5rem;
@@ -544,19 +485,14 @@ div:has(> div > button[type="button"]) {
 .btn-fav,
 .btn-eliminar {
   flex: 1;
-  font-size: 0.775rem;
-  font-weight: 700;
   padding: 0.6rem 0.5rem;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  transition: var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-size: 0.775rem;
 }
 
 .btn-fav {
   background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
 }
 
 .btn-fav:hover {
@@ -565,36 +501,31 @@ div:has(> div > button[type="button"]) {
 
 .btn-fav.fav-activo {
   background: var(--color-gold);
-  color: #0f172a;
-  border-color: #fef08a;
-  font-weight: 800;
+  color: #4a164f;
 }
 
 .btn-eliminar {
-  background: rgba(0, 0, 0, 0.35);
-  color: #fca5a5;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fbcfe8;
 }
 
 .btn-eliminar:hover {
-  background: #dc2626;
+  background: #be185d;
   color: #ffffff;
-  border-color: #ef4444;
 }
 
-/* Estados Vacíos / Mensajes sin Entrenador */
 .grid-mochila + div,
 div:has(> h3:first-child) {
-  text-align: center;
+  margin-top: 1.5rem;
   padding: 3.5rem 1.5rem;
-  background-color: var(--color-surface);
   border: 2px dashed var(--color-border);
   border-radius: var(--radius-md);
-  margin-top: 1.5rem;
+  background-color: rgba(50, 27, 77, 0.7);
+  text-align: center;
 }
 
 .grid-mochila + div p,
 div:has(> h3:first-child) p {
-  color: var(--color-text-muted);
-  font-size: 1rem;
   margin-top: 0.35rem;
+  color: var(--color-text-muted);
 }

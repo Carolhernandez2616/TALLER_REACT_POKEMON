@@ -50,7 +50,8 @@ export const RegistroUsuario: React.FC = () => {
     };  
 
 return (
-    <div>
+    <>
+    <div className="form-container">
         <header>
             <h2>Registro de Entrenadores</h2>
         </header>
@@ -218,8 +219,7 @@ return (
 
         </div>
 
-           
-           {entrenadores.length > 0 && (
+        {entrenadores.length > 0 && (
                 <div>
                     <h3> Cambiar Entrenador </h3>
                     <div>
@@ -238,7 +238,8 @@ return (
                     </div>
                 </div>   
             )}
-        </div>
+    </div>
+    </>
     );
 
 };
