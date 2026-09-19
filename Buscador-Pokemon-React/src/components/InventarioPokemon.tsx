@@ -33,12 +33,14 @@ return (
 
                     <img src={poke.image} />
                     <h4>{poke.name}</h4>
-                    <p>{poke.type}</p>
+                    <p className={`tipo-pokemon tipo-${poke.type}`}>{poke.type}</p>
 
                     <div className="panel-botones">
                         <button className={`btn-fav ${poke.esFavorito ? 'fav-activo' : ''}`}
+                        aria-pressed={poke.esFavorito}
                         onClick={() => actualizarFavorito(poke.id)}>
-                            {poke.esFavorito ? ' 🌟⭐Favorito' : ' 🌟Marcar'}
+                            <span className="estrella-favorito" aria-hidden="true">{poke.esFavorito ? '★' : '☆'}</span>
+                            {poke.esFavorito ? ' Favorito' : ' Marcar'}
                         </button>
                         <button type="button" className='btn-eliminar'
                         onClick={() => eliminarPokemonDeMochila(poke.id)}>Liberar o Soltar</button> 

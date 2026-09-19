@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { usePokemon, type PokemonTarjeta } from '../context/pokemonContext';
 
 export const BuscadorPokemon: React.FC = () => {
-    const { entrenadorActivo, guardarPokemonMochila } = usePokemon();
+    const { entrenadorActivo, guardarPokemonMochila, mochilaActual } = usePokemon();
 
     const [busqueda, setBusqueda] = useState('');
     const [pokemonActual, setPokemonActual] = useState<PokemonTarjeta | null>(null);
     const [mensajeError, setMensajeError] = useState<string | null>(null);
     const [cargando, setCargando] = useState(false);
     const navigate = useNavigate();
+    const primerFavorito = mochilaActual.find((pokemon) => pokemon.esFavorito);
 
 
 
@@ -35,7 +36,7 @@ export const BuscadorPokemon: React.FC = () => {
             setPokemonActual({
                 id: datos.id,
                 name: datos.name,
-                image: datos.sprites.front_default,
+                image: datos.sprites.other?.['official-artwork']?.front_default ?? datos.sprites.front_default,
                 type: datos.types[0].type.name,
                 baseExperience: datos.base_experience,
                 esFavorito: false
@@ -118,6 +119,24 @@ return (
             </div>
         )
     }
+
+    {primerFavorito && (
+        <aside className="favorito-destacado">
+            <div className="favorito-destacado__cabecera">
+                <span className="favorito-destacado__estrella" aria-hidden="true">★</span>
+                <span className="favorito-destacado__etiqueta">PRIMER LUGAR</span>
+            </div>
+            <div className="favorito-destacado__contenido">
+                <img src={primerFavorito.image} alt={primerFavorito.name} />
+                <div>
+                    <h3>{primerFavorito.name}</h3>
+                    <p className={`tipo-pokemon tipo-${primerFavorito.type}`}>
+                        {primerFavorito.type.toUpperCase()}
+                    </p>
+                </div>
+            </div>
+        </aside>
+    )}
 </div>
 );
 };
