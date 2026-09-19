@@ -111,6 +111,7 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
         <PokemonContext.Provider value={{
             entrenadores,
             entrenadorActivo,
+            mochilaActual,
             seleccionarEntrenador,
             registrarEntrenador,
             guardarPokemonMochila,
@@ -128,3 +129,5 @@ export const usePokemon = () =>{
     if(!context) throw new Error('usePokemon debe usarse en Provider');
     return context;
 };
+
+

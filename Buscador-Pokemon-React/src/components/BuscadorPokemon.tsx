@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { usePokemon, type PokemonTarjeta } from '../context/pokemonContext';
 
 export const BuscadorPokemon: React.FC = () => {
@@ -8,11 +9,14 @@ export const BuscadorPokemon: React.FC = () => {
     const [pokemonActual, setPokemonActual] = useState<PokemonTarjeta | null>(null);
     const [mensajeError, setMensajeError] = useState<string | null>(null);
     const [cargando, setCargando] = useState(false);
+    const navigate = useNavigate();
+
 
 
 
     const buscarPokemon = async (e: React.FormEvent) => {
         e.preventDefault();
+
 
         const query = busqueda.trim().toLowerCase();
 
@@ -55,6 +59,8 @@ export const BuscadorPokemon: React.FC = () => {
         guardarPokemonMochila(pokemonActual);
         alert(`El Pokemon ${pokemonActual.name}  es guardado en la mochila de ${entrenadorActivo?.nombreCompleto}`)
     }
+        
+        navigate('/inventario');
 
     }
 

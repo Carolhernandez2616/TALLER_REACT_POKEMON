@@ -45,7 +45,7 @@ export const RegistroUsuario: React.FC = () => {
     };
 
         registrarEntrenador(nuevo);
-        navigate('/pokemon');
+        navigate('/buscador');
 
     };  
 
@@ -209,7 +209,6 @@ return (
                     </div>
 
                     <div className="actions">
-                        <button type="reset" className="btn btn--ghost">Limpiar formulario</button>
                         <button type="submit" className="btn btn--primary">Enviar registro <span className="btn__arrow" aria-hidden="true">→</span>
                         </button>
                     </div>
@@ -227,7 +226,7 @@ return (
                         {entrenadores.map((user) => (
                             <button key={user.id} type='button' onClick={() => seleccionarEntrenador(user)}
                             style={{
-                                backgroundColor: entrenadorActivo?.id === user.id ? '#FF00FF' : '#F00F',
+                                backgroundColor: entrenadorActivo?.id === user.id ? '#c212c2' : 'rgb(248, 100, 100)',
                                 color :entrenadorActivo?.id === user.id ? 'white' : 'black',
                                 padding: '6px 12px',
 
